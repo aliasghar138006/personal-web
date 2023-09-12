@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { DataContext } from "../../context/Context";
+import { DataContext } from "@context/Context";
 import { useContext, useEffect } from "react";
 
 
 function Sidebar({open , setOpen}) {
 
-    const menuData = useContext(DataContext);
+    const {menuData} = useContext(DataContext);
 
     return (
         <div className='absolute md:block top-0 right-0 bg-[#0c0c14] h-[800px] w-[50%] sm:w-[25%] overflow-x-hidden z-20'>

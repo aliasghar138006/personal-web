@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../modules/Sidebar";
+import Sidebar from "@modules/Sidebar";
 
 
 
@@ -7,10 +7,10 @@ function Layout({children}) {
     const [open , setOpen] = useState(false);
     
     const resizeHandler = () => {
-        const width = window.innerWidth;
-        if (width >= 768){
-            setOpen(true);
-        }
+        // const width = window.innerWidth;
+        // if (width >= 768){
+        //     setOpen(true);
+        // }
     }
     
     
@@ -45,8 +45,9 @@ function Layout({children}) {
                     <Sidebar />
                      :null
                 }
-            
-                {children}
+                <div className={open ? 'fixed w-full opacity-70' : null}>
+                    {children}      
+                </div>
             </div>
         </div>
     );
