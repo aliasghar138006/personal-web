@@ -5,7 +5,8 @@
             "@elements/*" : ["/components/elements/*"],
             "@modules/*" : ["/components/modules/*"],
             "@templates/*" : ["/components/templates/*"],
-            "@context/*" : ["/context/*"]
+            "@context/*" : ["/context/*"],
+            "@public/*" : ["/public/*"]
         }
     }
 }

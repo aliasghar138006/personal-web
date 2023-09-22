@@ -1,24 +1,48 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Sidebar from "@modules/Sidebar";
+import { DataContext } from "context/Context";
+import { DetectResize } from "utils/detectResize";
+import { useRouter } from "next/router";
+
 
 
 
 function Layout({children}) {
-    const [open , setOpen] = useState(false);
     
-    const resizeHandler = () => {
-        // const width = window.innerWidth;
-        // if (width >= 768){
-        //     setOpen(true);
-        // }
-    }
+    const {open , setOpen} = useContext(DataContext);
+    const router = useRouter();
+    const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  });
+    
+
+    // const clickHandler = () => {
+    //     const width = window.innerWidth;
+    //     if (width >= 768){
+    //         setOpen(!open);
+    //     }
+    // }
+
+    
+
     
     
 
     
     return (
-        <div className="font-laleh z-1000" onMouseEnter={resizeHandler} onClick={() => setOpen(!open)}>
-            <div id="nav" className="fixed md:hidden flex p-4 bg-[#10101a] top-0 w-full items-center z-10">
+        <div className="font-laleh z-1000">
+            {router.route == '/dashboard' || router.route == '/admin' ? null :
+                <div id="nav" className="fixed md:hidden flex p-4 bg-[#10101a] top-0 w-full items-center z-10">
                 <div className="flex-auto">
                     <span className="text-white text-[25px]">علی اصغر شحنه</span>
                 </div>
@@ -38,14 +62,17 @@ function Layout({children}) {
                     }
                 </div>
             </div>
+            }
             
             <div>
+                
                 {
-                    open  ?
-                    <Sidebar />
+                    open || windowWidth>=768 ?
+                    <Sidebar open={open} setOpen={setOpen} windowWidth={windowWidth} setWindowWidth={setWindowWidth} />
                      :null
                 }
-                <div className={open ? 'fixed w-full opacity-70' : null}>
+                
+                <div className={(open || windowWidth>=768) && (router.route !== '/dashboard' && router.route !== '/admin') ? 'fixed w-full opacity-70' : null}>
                     {children}      
                 </div>
             </div>

@@ -1,9 +1,10 @@
 import '../styles/globals.css'
+import 'react-quill/dist/quill.snow.css'
 import Layout from '../components/Layout/Layout'
 import Context from '../context/Context'
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps}) {
   return (
     <Context>
       <Layout>
@@ -12,5 +13,7 @@ function MyApp({ Component, pageProps }) {
     </Context>
   )
 }
+
+
 
 export default MyApp

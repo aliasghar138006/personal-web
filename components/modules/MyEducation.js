@@ -8,8 +8,8 @@ function MyEducation(props) {
     return (
         <div>
             <h2 className="text-[2rem] my-[30px]">تحصیلات من</h2>
-            {educationData.map(item => (
-                <Education key={item.id} title={item.title} university={item.university} year={item.year} />
+            {educationData && educationData.map((item , index) => (
+                <Education key={index} title={item.title} university={item.university} year={item.year} />
             ))}
             <hr className="w-full"></hr>
         </div>
