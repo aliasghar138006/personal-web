@@ -2,6 +2,7 @@ import Link from "next/link";
 import { DataContext } from "@context/Context";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import RightArrow from "public/icons/RightArrow";
 
 
 function Sidebar({open , setOpen , windowWidth , setWindowWidth}) {
@@ -16,9 +17,9 @@ function Sidebar({open , setOpen , windowWidth , setWindowWidth}) {
     }else {
         return (
         
-            <div onClick={() => {setOpen(false); setWindowWidth(0)}} className='absolute md:block top-0 right-0 bg-[#0c0c14] h-[800px] w-[50%] sm:w-[25%] overflow-x-hidden z-20'>
+            <div className='absolute md:block top-0 right-0 bg-[#0c0c14] h-[800px] w-[50%] sm:w-[25%] overflow-x-hidden z-20'>
                 <div className='absolute -right-12 bg-[#2fbf71] w-[150%] h-[120px] rounded-b-[70%] z-0'>
-    
+                    
                 </div>
                 <div className='absolute top-[50px] right-[27%] bg-white w-[100px] h-[100px] border-[5px] border-s-violet-50 overflow-hidden rounded-full'>
                     <img src='/images/aliasghar.jpg' alt='aliasghar' className='-my-2' />

@@ -10,13 +10,18 @@ import Courses from "../public/icons/Courses";
 import Contact from "../public/icons/Contact";
 import Cooperations from "../public/icons/Cooperations";
 import Teach from "../public/icons/Teach";
+import { useRouter } from "next/router";
 
 export const DataContext = createContext(null);
 function Context({ children }) {
+  const router = useRouter();
+  
   const [data , setData] = useState({})
 
   useEffect(() => {
-    fetch('/api/userdata').then(res => res.json()).then(data => setData(data.data))
+    if(router.pathname !== 'admin'){
+      fetch('/api/userdata').then(res => res.json()).then(data => setData(data.data))
+    }
   } , [])
   const [open, setOpen] = useState(false);
   const menuData = [
