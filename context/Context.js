@@ -19,7 +19,7 @@ function Context({ children }) {
   const [data , setData] = useState({})
 
   useEffect(() => {
-    if(router.pathname !== 'admin'){
+    if(router.pathname !== '/admin'){
       fetch('/api/userdata').then(res => res.json()).then(data => setData(data.data))
     }
   } , [])
