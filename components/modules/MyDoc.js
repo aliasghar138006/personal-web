@@ -2,7 +2,7 @@ import SearchBtn from 'components/elements/SearchBtn';
 import Link from 'next/link';
 import { useState } from 'react';
 
-function MyDoc({title , image , url}) {
+function MyDoc({title , image , url='/documents'}) {
     const [show , setShow] = useState(false);
     const hoverHandler = () => {
         setShow(true);

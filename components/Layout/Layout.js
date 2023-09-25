@@ -78,7 +78,7 @@ function Layout({ children }) {
 
         {open || windowWidth >= 768 ? (
           <div>
-            {windowWidth >= 768 ? (
+            {windowWidth >= 768 && (router.pathname !=='/admin' && router.pathname !== '/dashboard') ? (
               <div
                 onClick={() => {
                   setOpen(false);

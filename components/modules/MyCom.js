@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import SearchBtn from 'components/elements/SearchBtn';
-function MyCom({image , url}) {
+function MyCom({image , url='/commendations'}) {
     const [show , setShow] = useState(false);
     return (
         <div className='inline-grid mr-[10px] relative mt-[30px]' onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>

@@ -8,7 +8,7 @@ function MyDocuments(props) {
     return (
         <div className="my-[100px] w-[80%] mx-auto text-white">
             <Title title='مدارک من' />
-            {documentsData.map(item => (
+            {documentsData && documentsData.map(item => (
                 <MyDoc key={item.id} title={item.title} image={item.image} url={item.url} />
             ))}
         </div>

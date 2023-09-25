@@ -6,6 +6,7 @@ import { VerifyToken } from 'utils/passwordOperations';
 
 function Index(props) {
     const router = useRouter();
+    
     // useEffect(() => {
     //     fetch('/api/verify').then(res => res.json()).then(data => {
     //         if(data.status == 'success'){

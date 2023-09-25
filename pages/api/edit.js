@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     
   if (req.method !== "POST") return;
   const {
-    form: { fullName, email, city, shortDescription, descriptions , image , skills , educations },
+    form: { fullName, email, city, shortDescription, descriptions , image , skills , educations , experience , documents , commendations , simples  , courses},
   } = req.body;
   // if(!fullName){
   //     return res.status(422).json({status:'failed' , message:'invalid data!'})
@@ -37,6 +37,11 @@ export default async function handler(req, res) {
   newUser.image = image;
   newUser.skills = skills;
   newUser.educations = educations;
+  newUser.experience = experience;
+  newUser.documents = documents;
+  newUser.commendations = commendations;
+  newUser.simples = simples;
+  newUser.courses = courses;
   newUser.save();
 
   res

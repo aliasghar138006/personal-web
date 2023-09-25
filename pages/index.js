@@ -7,6 +7,8 @@ import { useContext, useEffect, useState } from "react";
 export default function HomePage() {
 
   const {data} = useContext(DataContext);
+
+  
   
   
   return (

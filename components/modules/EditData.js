@@ -2,9 +2,22 @@ import Dashboardbtn from "components/elements/Dashboardbtn";
 import EditInput from "components/elements/EditInput";
 import { DataContext } from "context/Context";
 import { useRouter } from "next/router";
+import Cancell from "public/icons/Cancell";
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import SkillsEdit from "./SkillsEdit";
+import EducationsEdit from "./EducationsEdit";
+import LeftArrow from "public/icons/LeftArrow";
+import ExperienceEdit from "./ExperienceEdit";
+import DocumentEdit from "./DocumentEdit";
+import CommendationsEdit from "./CommendationsEdit";
+import SimplesEdit from "./SimplesEdit";
+import CoursesEdit from "./CoursesEdit";
+
 
 function EditData() {
+
+
   
   const {data} = useContext(DataContext);
   
@@ -17,11 +30,11 @@ function EditData() {
         image: "",
         skills: [{ title: "", width: "" }],
         educations: [{title:'' , university:'' , year:''}],
-        exprience: [],
-        documents: [],
-        commendations: [],
-        simples: [],
-        courses: [],
+        experience: [{title:'' , descriptions:'' , startyear:'' , endYear:'' , icon:<LeftArrow />}],
+        documents: [{title:'' , image:''  , url:''}],
+        commendations: [{image:'' , url:''}],
+        simples: [{title:'' , image:'' , url:''}],
+        courses: [{image:'' , url:''}],
       });
 
       
@@ -37,41 +50,43 @@ function EditData() {
 
     const data = await res.json();
     console.log(data);
+    if(data.status == 'success') {
+      toast.success("اطلاعات با موفقیت ویرایش شدند", {
+
+        autoClose: 3000,
+  
+        hideProgressBar: false,
+  
+        closeOnClick: true,
+  
+        pauseOnHover: true,
+  
+        draggable: false,
+  
+        progress: undefined,
+  
+     });
+    }else{
+      toast.error("خطایی رخ داده است" , {
+        autoClose: 3000,
+  
+        hideProgressBar: false,
+  
+        closeOnClick: true,
+  
+        pauseOnHover: true,
+  
+        draggable: false,
+  
+        progress: undefined,
+      })
+    }
+   
   };
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
-  const skillsHandler = (e , index) => {
-    const {skills} = form;
-    const {name , value} = e.target;
-    const newSkills = [...skills];
-    newSkills[index][name] = value; 
-    setForm({ ...form, skills:newSkills });
-  };
-
-  const educationsHandler = (e , index) => {
-    const {educations} = form;
-    const {name , value} = e.target;
-    const newEducations = [...educations];
-    newEducations[index][name] = value; 
-    setForm({ ...form, educations:newEducations });
-    console.log(form.educations);
-  };
-
-  const addSkillHandler = () => {
-    const {skills} = form;
-    setForm({...form , skills:[...skills , {title:'' , width:''}]});
-    console.log(form.skills);
-  }
-
-  const addEducationsHandler = () => {
-    const {educations} = form;
-    setForm({...form , educations:[...educations , {title:'' , university:'' , year:''}]});
-  }
-
-  
 
   if(form.password) {
     return (
@@ -114,33 +129,28 @@ function EditData() {
         />
         
         {/* skills */}
-        <div className="w-[80%] mt-[10px] py-[30px] mx-auto rounded-xl  border-2 border-green-800">
-        <h2 className="text-[1.3rem] text-center">مهارت ها</h2>
-          {form.skills.map((item, index) => (
-           <div key={index}>
-            <EditInput label='عنوان' placeholder="فتوشاپ" value={item.title} onChange={(e) => skillsHandler(e , index)} name='title'/>
-            <EditInput label='سطح تسلط' placeholder="80" type="number" value={item.width} onChange={(e) => skillsHandler(e , index)} name='width'/>
-            <hr></hr>
-           </div>
-          ))}
-          <Dashboardbtn title='افزودن مورد جدید' onClick={addSkillHandler} />
-        </div>
+       <SkillsEdit form={form} setForm={setForm} />
   
         {/* educations */}
-        <div className="w-[80%] mt-[10px] py-[30px] mx-auto rounded-xl  border-2 border-green-800">
-        <h2 className="text-[1.3rem] text-center">تحصیلات</h2>
-          {form.educations.map((item, index) => (
-           <div key={index}>
-            <EditInput label='عنوان' placeholder="کارشناسی مکانیک" value={item.title} onChange={(e) => educationsHandler(e , index)} name='title'/>
-            <EditInput label='محل تحصیل' placeholder="دانشگاه تهران" value={item.university} onChange={(e) => educationsHandler(e , index)} name='university'/>
-            <EditInput label='سال فارغ التحصیلی' placeholder="1398" value={item.year} onChange={(e) => educationsHandler(e , index)} name='year'/>
-            <hr></hr>
-           </div>
-          ))}
-          <Dashboardbtn title='افزودن مورد جدید' onClick={addEducationsHandler} />
-        </div>
+       <EducationsEdit form={form} setForm={setForm} />
+
+       {/* experience */}
+       <ExperienceEdit form={form} setForm={setForm} />
+
+       {/* documents */}
+       <DocumentEdit form={form} setForm={setForm} />
+
+       {/* commendations */}
+       <CommendationsEdit form={form} setForm={setForm} />
+
+       {/* simples */}
+       <SimplesEdit form={form} setForm={setForm} />
+
+       {/* courses */}
+       <CoursesEdit form={form} setForm={setForm} />
   
         <Dashboardbtn title='ویرایش' onClick={editHandler} />
+        
       </div>
     );
   }else{

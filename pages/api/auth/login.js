@@ -14,7 +14,7 @@ export default async function handler(req , res){
         res.status(422).json({status:'failed' , message:'Invalid Data!'});
         return;
     }
-
+    console.log(user , password);
     await Connect();
     const newUser = await PersonalUsers.findOne({userName : user})
     if(!newUser){

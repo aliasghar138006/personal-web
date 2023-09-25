@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-function Simple({title , image , url}) {
+function Simple({title , image , url=''}) {
     return (
         <Link href={url}>
             <div className='inline-block overflow-hidden relative mt-[20px] mx-1'>

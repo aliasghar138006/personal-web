@@ -5,12 +5,13 @@ import { DataContext } from '@context/Context';
 
 
 function MyExprience(props) {
-    const {exprienceData} = useContext(DataContext)
+    const {exprienceData} = useContext(DataContext);
+    console.log(exprienceData);
     return (
         <div>
             <Title title='تجربه ها' />
-            {exprienceData.map(item => (
-                <Exprience key={item.id} title={item.title} descriptions={item.descriptions} startDate={item.startDate} endDate={item.endDate} icon={item.icon} />
+            {exprienceData && exprienceData.map(item => (
+                <Exprience key={item.id} title={item.title} descriptions={item.descriptions} startYear={item.startYear} endYear={item.endYear} icon={item.icon} />
             ))}
         </div>
     );

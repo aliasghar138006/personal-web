@@ -5,12 +5,11 @@ export default async function handler(req , res){
     if(req.method !== 'GET') return;
     
 
-    const {token} = req.cookies;
-    const {user} = await VerifyToken(token , process.env.SECRET_KEY)
-    
+    const userName = process.env.NEXT_PUBLIC_USERNAME;
+    // console.log(userName);
     await Connect();
 
-    const newUser = await PersonalUser.findOne({userName : user});
+    const newUser = await PersonalUser.findOne({userName : userName});
 
     if(!newUser){
         return res.status(401).json({status:'failed' , message:'user Not found!'})

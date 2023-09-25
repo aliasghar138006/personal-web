@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Account from "@public/icons/Account";
 import { useRouter } from "next/router";
+import { DataContext } from "context/Context";
 
 
 function LoginPage() {
     const router = useRouter();
     const [user , setUser] = useState('');
     const [password , setPassword] = useState('');
-    
-
+  
+    useEffect(() => {
+        fetch('/api/')
+    } , [userName])
     const loginHandler = async() => {
         const res = await fetch('/api/auth/login' , {
             method:'POST',
@@ -20,7 +23,13 @@ function LoginPage() {
 
         const data = await res.json();
         console.log(data);
-        if(data.status == 'success') router.push('/dashboard')
+        if(data.status == 'success'){
+            // setData(data.data);
+            router.push('/dashboard');
+            
+        }
+
+        console.log(userName);
        
     }
     return (

@@ -7,7 +7,7 @@ import RightArrow from "public/icons/RightArrow";
 
 function Sidebar({open , setOpen , windowWidth , setWindowWidth}) {
 
-    const {menuData} = useContext(DataContext);
+    const {menuData , data} = useContext(DataContext);
     const router = useRouter();
 
     
@@ -22,7 +22,7 @@ function Sidebar({open , setOpen , windowWidth , setWindowWidth}) {
                     
                 </div>
                 <div className='absolute top-[50px] right-[27%] bg-white w-[100px] h-[100px] border-[5px] border-s-violet-50 overflow-hidden rounded-full'>
-                    <img src='/images/aliasghar.jpg' alt='aliasghar' className='-my-2' />
+                    <img src={data.image} alt='aliasghar' className='-my-2' />
                 </div>
                 <span className='absolute top-[170px] right-[30%] text-white'>علی اصغر شحنه</span>
                 <ul className="my-[250px] mr-5">

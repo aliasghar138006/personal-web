@@ -9,7 +9,7 @@ function MyCommendations(props) {
         <div className="my-[100px] w-[80%] mx-auto text-white">
             <Title title='تقدیرنامه ها' />
             <div className='inline-grid md:grid-cols-3'>
-                {commendationsData.map(item => (
+                {commendationsData && commendationsData.map(item => (
                     <MyCom key={item.id} image={item.image} url={item.url} />
                 ))}
             </div>

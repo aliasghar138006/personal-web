@@ -34,7 +34,7 @@ const personalSchema = new Schema({
     },
     skills : {type:Array},
     educations : {type:Array},
-    exprience: {type:Array},
+    experience: {type:Array},
     documents: {type:Array},
     commendations : {type:Array},
     simples : {type:Array},

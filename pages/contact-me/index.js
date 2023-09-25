@@ -3,7 +3,7 @@ import React from 'react';
 
 function Index(props) {
     return (
-        <div className='flex bg-[#10101a] h-full'>
+        <div className='flex bg-[#10101a] h-[1000px]'>
             <ContactMe />
         </div>
     );
