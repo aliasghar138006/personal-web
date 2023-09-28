@@ -39,7 +39,7 @@ function Message(props) {
       <h1>لیست پیام ها</h1>
       <div className="relative mt-[50px]">
         {show && content ? (
-          <div className="absolute w-[90%] h-[500px] right-[7%] p-5 bg-white bg-opacity-90 rounded-xl text-center border-3 border-green-800">
+          <div className="absolute overflow-scroll w-[90%] h-[500px] right-[7%] p-5 bg-white bg-opacity-90 rounded-xl text-center border-3 border-green-800">
             <div>
               <div onClick={() => setShow(false)} className="w-[30px] h-[30px] text-red-600 cursor-pointer">
                 <Cancell />
