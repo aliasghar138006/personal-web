@@ -25,7 +25,7 @@ export default function HomePage() {
             
                 <h1 className="text-[5rem] text-white">{data.fullName}</h1>
               
-              <h3 className="text-[1.5rem] mb-5 text-white">برنامه نویس و مدرس مورد تایید مایکروسافت</h3>
+              <h3 className="text-[1.5rem] mb-5 text-white">{data.shortDescription}</h3>
               <Button title='دریافت رزومه' href='/home' />
             </div>
             <div>

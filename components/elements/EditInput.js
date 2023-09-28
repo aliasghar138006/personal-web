@@ -3,7 +3,7 @@ import React from "react";
 function EditInput({label , type='text' , placeholder=''  , value , name ,  onChange}) {
   return (
     <div className="flex md:mr-[100px] max-md:block mx-auto items-center p-5 w-full mt-[20px]">
-      <div className="w-[10%]">
+      <div className="w-[10%] max-md:w-full">
         <label htmlFor="fullname">{label}</label>
       </div>
       <input

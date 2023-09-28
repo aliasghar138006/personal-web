@@ -13,6 +13,22 @@ const personalSchema = new Schema({
         type:String,
         default:'test@test.com'
     },
+    phone: {
+        type:String,
+        default:'+123456'
+    },
+    telegram: {
+        type:String,
+        default:''
+    },
+    instagram: {
+        type:String,
+        default:''
+    },
+    resume:{
+        type:String,
+        default:''
+    },
     userName : {
         type:String,
         require:true
@@ -39,6 +55,7 @@ const personalSchema = new Schema({
     commendations : {type:Array},
     simples : {type:Array},
     courses : {type:Array},
+    message: {type:Array},
     createAt : {
         type:Date,
         default : () => Date.now(),

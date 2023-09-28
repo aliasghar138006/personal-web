@@ -6,8 +6,9 @@ import Mobile from 'public/icons/Mobile';
 import dynamic from 'next/dynamic';
 import { modules , formats } from 'utils/QuilModule';
 import Button from 'components/elements/Button';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { DataContext } from 'context/Context';
+import { toast } from 'react-toastify';
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {	
 	ssr: false,
 	loading: () => <p>Loading ...</p>,
@@ -15,7 +16,40 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
 
 
 function ContactMe() {
-    const {data} = useContext(DataContext)
+    const {data} = useContext(DataContext);
+    const [form , setForm] = useState({
+        fullName:'',
+        email:'',
+        title:'',
+
+    })
+    const [content  , setContent] = useState('');
+    
+
+    const submitHandler = async () => {
+        const res = await fetch('/api/message' , {
+            method:'POST',
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({form , content})
+        });
+
+        const data = await res.json();
+        if(data.status == 'success'){
+            toast.success('پیام ارسال شد');
+            setForm({
+                fullName:'',
+                email:'',
+                title:'',
+        
+            });
+            setContent('');
+        }else{
+            toast.error('خطا در ارسال پیام');
+        }
+        
+    }
     return (
         <div className="my-[100px] w-[80%] mx-auto text-white">
             <Title title='ارتباط با من' />
@@ -47,21 +81,22 @@ function ContactMe() {
                 <h2 className='text-[2rem]'>پیام خود را برای من ارسال کنید</h2>
                 <div className='flex max-xl:block justify-between mt-[30px]'>
                     <div>
-                        <Input placeholder='نام و نام خانوادگی' />
+                        <Input placeholder='نام و نام خانوادگی' name='fullName' value={form.fullName} onChange={e => setForm({...form , [e.target.name]: e.target.value})} />
                     </div>
                     <div className='xl:mr-[50px] max-xl:mt-[30px]'>
-                        <Input placeholder='ایمیل'/>
+                        <Input placeholder='ایمیل' name='email' value={form.email} onChange={e => setForm({...form , [e.target.name]: e.target.value})}/>
                     </div>
                 </div>
                 <div className='mt-[30px] w-full'>
-                    <Input placeholder='عنوان' />
+                    <Input placeholder='عنوان' name='title' value={form.title} onChange={e => setForm({...form , [e.target.name]: e.target.value})} />
                 </div>
                 <div className='mt-[50px]' dir='rtl'>
-                    <QuillNoSSRWrapper  theme="snow" modules={modules} formats={formats} />
+                    <QuillNoSSRWrapper  theme="snow" value={content} onChange={setContent} modules={modules} formats={formats} />
                 </div>
-                <div className='mt-[30px]'>
+                <div onClick={submitHandler} className='mt-[30px] cursor-pointer'>
                     <Button title='ارسال' />
                 </div>
+                {/* <p>{content}</p> */}
             </div>
             </div>
            

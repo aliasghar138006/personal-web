@@ -13,7 +13,7 @@ function MyDoc({title , image , url='/documents'}) {
     }
 
     return (
-        <div className='relative inline-block mt-5 ml-2' onMouseEnter={hoverHandler} onMouseLeave={leaveHandler}>
+        <div className='relative inline-block mt-5 ml-2 overflow-hidden' onMouseEnter={hoverHandler} onMouseLeave={leaveHandler}>
                 <img src={image} width='400px' height='200px' alt='mcab'/>
                 {show ? 
                    <div style={{transition:'all ease 3s'}} >

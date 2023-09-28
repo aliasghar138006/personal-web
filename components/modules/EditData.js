@@ -24,6 +24,10 @@ function EditData() {
     const [form, setForm] = useState({
         fullName: "",
         email: "",
+        phone:"",
+        telegram:'',
+        instagram:'',
+        resume:'',
         city: "",
         shortDescription: "",
         descriptions: "",
@@ -103,6 +107,30 @@ function EditData() {
           value={form.email}
           onChange={(e) => changeHandler(e)}
         />
+         <EditInput
+          label="لینک تلگرام"
+          name="telegram"
+          value={form.telegram}
+          onChange={(e) => changeHandler(e)}
+        />
+         <EditInput
+          label="لینک اینستاگرام"
+          name="instagram"
+          value={form.instagram}
+          onChange={(e) => changeHandler(e)}
+        />
+        <EditInput
+          label="شماره تلفن"
+          name="phone"
+          value={form.phone}
+          onChange={(e) => changeHandler(e)}
+        />
+        <EditInput
+          label="لینک فایل رزومه"
+          name="resume"
+          value={form.resume}
+          onChange={(e) => changeHandler(e)}
+        />
         <EditInput
           label="َشهر"
           name="city"
@@ -155,7 +183,7 @@ function EditData() {
     );
   }else{
     return(
-      <div onClick={() => setForm(data)} className="bg-green-600 w-[50%] mx-auto text-center text-[2rem] p-2 cursor-pointer my-[400px] rounded-xl">
+      <div onClick={() => setForm(data)} className="bg-green-600 w-[50%] max-md:w-[100%] max-md:mr-2 mx-auto text-center text-[2rem] p-2 cursor-pointer my-[400px] rounded-xl">
         نمایش اطلاعات
       </div>
     )

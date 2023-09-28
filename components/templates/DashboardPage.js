@@ -1,11 +1,13 @@
 import EditData from "components/modules/EditData";
+import Message from "components/modules/Message";
 import { useRouter } from "next/router";
 import Edit from "public/icons/Edit";
 import Eye from "public/icons/Eye";
 import Logout from "public/icons/Logout";
-import React from "react";
+import React, { useState } from "react";
 
 function DashboardPage() {
+  const [page , setPage] = useState('edit');
   const router = useRouter();
   const logoutHandler = () => {
     fetch('/api/auth/logout').then(res => res.json()).then(data => {
@@ -13,12 +15,13 @@ function DashboardPage() {
     })
   }
   return (
-    <div className="flex bg-green-300 w-full h-fit">
-      <div className="mx-auto w-[70%]">
-        <EditData />
+    <div className="flex bg-green-300 w-full h-[100%]">
+      <div className="mx-auto w-[70%] h-full">
+        {page == 'edit' ? <EditData /> :<Message />}
+        
       </div>
       <div style={{transition:'all ease .5s'}} className="fixed bg-white w-[50px]  md:hover:w-[230px] transition ease-in-out duration-3000 h-full">
-        <div className="block cursor-pointer h-[50px] overflow-hidden mt-[50px] items-center">
+        <div onClick={() => setPage('edit')} className="block cursor-pointer h-[50px] overflow-hidden mt-[50px] items-center">
           <div className="absolute w-[30px] h-[30px] m-0 right-[8px]">
             <Edit />
           </div>
@@ -26,7 +29,7 @@ function DashboardPage() {
             <span className="">تغییر اطلاعات</span>
              </div>
         </div>
-        <div className="block cursor-pointer h-[50px] overflow-hidden mt-[50px] items-center">
+        <div onClick={() => setPage('message')} className="block cursor-pointer h-[50px] overflow-hidden mt-[50px] items-center">
           <div className="absolute w-[30px] h-[30px] m-0 right-[8px]">
             <Eye />
           </div>

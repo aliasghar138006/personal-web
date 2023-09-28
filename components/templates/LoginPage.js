@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Account from "@public/icons/Account";
 import { useRouter } from "next/router";
 import { DataContext } from "context/Context";
+import { toast } from "react-toastify";
 
 
 function LoginPage() {
@@ -9,9 +10,7 @@ function LoginPage() {
     const [user , setUser] = useState('');
     const [password , setPassword] = useState('');
   
-    useEffect(() => {
-        fetch('/api/')
-    } , [userName])
+   
     const loginHandler = async() => {
         const res = await fetch('/api/auth/login' , {
             method:'POST',
@@ -27,9 +26,11 @@ function LoginPage() {
             // setData(data.data);
             router.push('/dashboard');
             
+        }else{
+            toast.error("نام کاربری یا کلمه عبور اشتباه است")
         }
 
-        console.log(userName);
+        
        
     }
     return (

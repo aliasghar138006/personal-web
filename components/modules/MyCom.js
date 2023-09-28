@@ -1,11 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
+import Image from 'next/image';
 import SearchBtn from 'components/elements/SearchBtn';
+
 function MyCom({image , url='/commendations'}) {
     const [show , setShow] = useState(false);
+    
     return (
         <div className='inline-grid mr-[10px] relative mt-[30px]' onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-            <img src={image} width='400px' height='200px' alt='com' />
+            <img  src={image} width='400px' height='200px' alt='com' />
             {show ?
                 <div className='absolute bottom-2 left-2'>
                     <SearchBtn url={url} />
