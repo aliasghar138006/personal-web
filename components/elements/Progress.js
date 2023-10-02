@@ -1,9 +1,9 @@
-import { Fade, Slide } from "react-awesome-reveal";
+
 
 function Progress({ title, width }) {
   console.log(width);
   return (
-    <Slide>
+    
       <div className="mt-[20px]">
       <span>{title}</span>
       <div className="flex items-center h-2 w-[100%] rounded bg-[#404048]">
@@ -20,7 +20,7 @@ function Progress({ title, width }) {
         </div>
       </div>
     </div>
-    </Slide>
+    
   );
 }
 
