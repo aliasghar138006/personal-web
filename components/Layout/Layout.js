@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import RightArrow from "public/icons/RightArrow";
 import LeftArrow from "public/icons/LeftArrow";
 
+
 function Layout({ children }) {
   const { open, setOpen } = useContext(DataContext);
   const router = useRouter();

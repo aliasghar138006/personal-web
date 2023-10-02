@@ -5,7 +5,7 @@ export default async function handler(req , res){
     if(req.method !== 'GET') return;
     
 
-    const userName = process.env.NEXT_PUBLIC_USERNAME;
+    const userName = process.env.USER_NAME;
     // console.log(userName);
     await Connect();
 

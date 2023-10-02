@@ -7,8 +7,10 @@ export default async function handler(req , res){
         res.status(401).json({status : 'failed' , message:'unauturaize'});
         return;
     }
+
+    const SECRET_KEY = 'e73f1ece5087b8a5ae33998952202202';
     
-    const verifyToken = VerifyToken(token , process.env.SECRET_KEY);
+    const verifyToken = VerifyToken(token , SECRET_KEY);
     if(!verifyToken){
         res.status(401).json({status:'failed' , message:'token Not Correct!'});
         return;

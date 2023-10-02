@@ -15,14 +15,15 @@ export default async function handler(req, res) {
     //     return res.status(422).json({status:'failed' , message:'invalid data!'})
     // }
     
-    
+    const SECRET_KEY = 'e73f1ece5087b8a5ae33998952202202';
   
     const { token } = req.cookies;
-    const { user } = await VerifyToken(token, process.env.SECRET_KEY);
+    const username = await VerifyToken(token,SECRET_KEY).user;
+    console.log(username);
   
     await Connect();
   
-    const newUser = await PersonalUser.findOne({ userName: user });
+    const newUser = await PersonalUser.findOne({ userName: username });
   
     if (!newUser) {
       return res
@@ -58,10 +59,10 @@ export default async function handler(req, res) {
   if(req.method == "DELETE"){
     const {index} = req.body;
     await Connect();
-    const user = await PersonalUser.findOne({userName : process.env.NEXT_PUBLIC_USERNAME});
+    const user = await PersonalUser.findOne({userName : username});
     const {message} = user;
     message.splice(index , 1);
-    const result = await PersonalUser.updateOne({userName : process.env.NEXT_PUBLIC_USERNAME} , {$set: {"message" : message}});
+    const result = await PersonalUser.updateOne({userName : username} , {$set: {"message" : message}});
     res.status(200).json({status:'success' , message:'delete record' , data:user})
   }
 }

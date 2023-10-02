@@ -25,7 +25,8 @@ export default Index;
 
 export async function getServerSideProps(context){
     const {token} = context.req.cookies;
-    const verifyToken = VerifyToken(token , process.env.SECRET_KEY);
+    const SECRET_KEY = 'e73f1ece5087b8a5ae33998952202202';
+    const verifyToken = VerifyToken(token , SECRET_KEY);
     if(!verifyToken){
         return {
             props:{}

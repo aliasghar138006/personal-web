@@ -14,7 +14,7 @@ function AboutSec(props) {
             <div className='flex my-[30px]'>
                 <div>
 
-                <Button title='ارتباط با من' href='/contact' />
+                <Button title='ارتباط با من' href='/contact-me' />
                 </div>
                 <div className='mr-[30px]'>
 
